@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title> Vue Test App</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+</head>
+
+<body class="bg-dark text-light">
+    <div class="container">
+        <h1 id="h1-tag" v-bind:title='heading'> {{ heading }} </h1>
+        <div>
+            <p id="p-tag"> {{ content }} </p>
+        </div>
+        <div>
+            <p id="if-p-tag" v-if="show">I can be shown</p>
+        </div>
+        <div>
+            <ol id="list-item">
+                <li v-for="index in mylist"> {{index.text}} </li>
+            </ol>
+        </div>
+        <div id="app-5">
+            <p>{{ message }}</p>
+            <!-- <button v-on:click="reverseMessage">Reverse Message</button> -->
+            <button v-on:click="joinText" class="btn btn-outline-light">click me</button>
+        </div>
+        <div id="app-6">
+            <p> {{ output }} </p>
+            <input type="text" v-model="output">
+        </div>
+    </div>
+
+    <script src="js/jquery-3.4.1.js"></script>
+    <script src="js/vue.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <!-- cdn -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> -->
+    <script>
+        // handling user inputs        
+        var app5 = new Vue({
+            el: "#app-5",
+            data: {
+                message: 'Hello'
+            },
+            methods: {
+                joinText: function () {
+                    this.message = this.message + ' world'
+                }
+            }
+        })
+
+        var app6 = new Vue({
+            el: "#app-6",
+            data: {
+                output: 'hello'
+            }
+        })
+
+        // var app5 = new Vue({
+        //     el: '#app-5',
+        //     data: {
+        //         message: 'Hello Vue.js!'
+        //     },
+        //     methods: {
+        //         // reverseMessage: function () {
+        //         //     this.message = this.message.split('').reverse().join('')
+        //         // }
+        //         sayHi: function () {
+        //             this.message = "I was clicked"
+        //         }
+        //     }
+        // })
+        // declarative rendering
+        var app1 = new Vue({
+            el: '#h1-tag',
+            data: {
+                heading: 'Vue Heading'
+            }
+        })
+
+        var app2 = new Vue({
+            el: '#p-tag',
+            data: {
+                content: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident illum, omnis magnam ab corporis voluptatibus optio sunt beatae quaerat vitae autem saepe repellat. Impedit maiores facere minus hic ipsum voluptates?"
+            }
+        })
+
+        // conditionals and loops
+        var app3 = new Vue({
+            el: "#if-p-tag",
+            data: {
+                show: true
+            }
+        })
+
+        var app4 = new Vue({
+            el: '#list-item',
+            data: {
+                mylist: [
+                    { text: "I am Item 1" },
+                    { text: "I am Item 2" },
+                    { text: "I am Item 3" },
+                    { text: "I am Item 4" },
+                    { text: "I am Item 5" }
+                ]
+            }
+        })
+    </script>
+</body>
+
+</html>
